@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>socaity.dev · socaity</title>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="A needs graph anyone can contest, a published rule that prices the work, and a record you can replay yourself.">
+<meta property="og:type" content="">
+<meta property="og:site_name" content="socaity.dev">
+<meta property="og:title" content="The system never assigns work. It prices it.">
+<meta property="og:description" content="A needs graph anyone can contest, a published rule that prices the work, and a record you can replay yourself.">
+<meta property="og:url" content="https://socaity.dev/">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="masthead">
+<div class="masthead__inner">
+<p class="masthead__mark"><a href="./">socaity.dev</a></p>
+<nav class="masthead__nav" aria-label="Site"><ul class="sitenav">
+<li><a href="./" aria-current="page">Home</a></li>
+<li><a href="roadmap/">Roadmap</a></li>
+<li><a href="ledger/">Ledger</a></li>
+<li><a href="faq/">FAQ</a></li>
+<li><a href="all/">All nodes</a></li>
+<li><a href="graph.json">graph.json</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="content">
+<aside class="rail"></aside>
+<article class="doc doc--manifesto">
+<h1 id="socaity-dev">socaity.dev</h1>
+<p><em>The place where society self-develops.</em></p>
+<p><strong>The system never assigns work. It prices it.</strong></p>
+<p><strong>No token. Nothing to trade. The ledger is a database, not a blockchain.</strong></p>
+<p>Status: <a href="https://github.com/socaity/socaity.dev/blob/main/doc/vision.md">mechanism designed</a> · <a href="https://github.com/socaity/socaity.dev/tree/main/ledger">record running</a> · <a href="#what-we-do-not-know">rule unwritten</a> · <a href="#is-this-a-crypto-thing">network of one</a>.</p>
+<ul>
+<li><strong>The record.</strong> <a href="ledger/">Every entry, with its evidence and its arithmetic.</a></li>
+<li><strong>The rule, as code.</strong> <a href="https://github.com/socaity/socaity.dev/tree/main/rule"><code>rule/</code></a>, and the <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/validator.py">validator that refuses an epoch without it</a>.</li>
+<li><strong>The needs graph.</strong> <a href="roadmap/">Our own roadmap, in the platform's own conventions.</a></li>
+<li><strong>The build.</strong> <a href="https://github.com/socaity/socaity.dev/blob/main/tools/check.sh"><code>tools/check.sh</code></a> renders this site twice and fails if the bytes differ.</li>
+</ul>
+<hr>
+<p>The long answer is the second section of this page.</p>
+<blockquote>
+<p><strong>Publication status.</strong> This is the M0 launch text. It publishes together with <a href="https://github.com/socaity/socaity.dev/blob/main/doc/m0-standing-commitment.md">the Standing Commitment</a> and not before — that instrument goes to a licensed Dutch practitioner first, and the three components publish together or not at all.</p>
+
+</blockquote>
+<h2 id="society-knows-how-to-want-things-it-is-bad-at-building-the-things-everyone-wants-and-nobody-will-pay-for">Society knows how to want things. It is bad at building the things everyone wants and nobody will pay for.</h2>
+<p>Every ambitious thing rests on foundations — libraries, protocols, infrastructure, research — that unlock enormous value downstream and capture almost none of it. Everybody wants the foundation. Nobody wants to be the one who pays for it. So it arrives late, or badly, or never, and everything built on top of it waits. xz. log4j. The list is long and the list is boring, and the boringness is the problem: quiet load-bearing work is exactly what markets price worst.</p>
+<p>Two things changed. Agentic AI turned software effort into something meterable and delegable — you can now contribute <em>capacity</em>, not only hours. And it became feasible to hold, in one shared structure, a live map of what people need and how those needs depend on one another.</p>
+<p>Together those make a mechanism practical that was not practical before:</p>
+<p><strong>The system never assigns work. It prices it.</strong></p>
+<p>Demand is expressed by people — one human, one voice, never weighted by money or machines. Supply is self-directed: you point your own agents at whatever you care about. Because the whole dependency structure is visible, the places where underinvestment is structurally predictable — high downstream value, low direct demand — become computable, and a <strong>subsidy multiplier</strong> rises on exactly those nodes until someone finds it worth showing up.</p>
+<p>Nobody is directed. Nobody contributes to an average. The pricing is what makes caring about the commons individually rational.</p>
+<p>The mechanism in full — the AND/OR needs graph, contestable edges, the Pigouvian subsidy made computable, the verification market, and the table of attacks it has to survive — is <a href="https://github.com/socaity/socaity.dev/blob/main/doc/vision.md">doc/vision.md</a>. It is a dense document on purpose. This page is the argument; that one is the design.</p>
+<hr>
+<h2 id="is-this-a-crypto-thing">Is this a crypto thing?</h2>
+<p>No.</p>
+<p><strong>A public record of contributions. No token. Nothing to trade. This is a database.</strong></p>
+<p>There is nothing to buy and nothing to sell. Entries are non-transferable and non-purchasable — you cannot buy this and you cannot sell it, and participation is not an investment.</p>
+<p>That is not a promise about our character; it is a property of the code, and the code is in this repository. The record is an append-only signed event log (<a href="https://github.com/socaity/socaity.dev/blob/main/ledger/log.py"><code>ledger/log.py</code></a>), validated at append time against a closed event catalogue (<a href="https://github.com/socaity/socaity.dev/blob/main/ledger/catalog.py"><code>ledger/catalog.py</code></a>) by predicates you can read in an afternoon (<a href="https://github.com/socaity/socaity.dev/blob/main/ledger/validator.py"><code>ledger/validator.py</code></a>), serialised as canonical JSON with floats rejected outright (<a href="https://github.com/socaity/socaity.dev/blob/main/ledger/canonical.py"><code>ledger/canonical.py</code></a>). It is a file with a hash chain. If we ever betray it, fork it — the record and the rule leave with you.</p>
+<p>The obvious objection — that a record started by one person is a <em>pre-mine</em> — is a fair one. It is answered where it belongs, on the <code>/ledger</code> page that publishes beside this one, with the denominator as the headline: there is currently one contributor, so the first epoch's shares are concentrated <em>because nobody else is in it yet</em>. The same rules, the same validation, and a declared rate apply to the founder as to anyone — clause 8 of <a href="https://github.com/socaity/socaity.dev/blob/main/doc/m0-standing-commitment.md">the Standing Commitment</a>.</p>
+<hr>
+<h2 id="what-we-promise-exactly">What we promise, exactly</h2>
+<blockquote>
+<p>Every contribution is recorded on a public, append-only ledger from day one. Records start as provisional and are confirmed through a published validation process. If money ever flows out of this project, it is allocated across confirmed records by a published rule, not by our mood. Whether, when, and how much is never guaranteed — no amount exists until a distribution is declared. What the rule protects is your recorded place in it: confirmed weights can't be quietly rewritten, and the whole ledger is forkable if we ever betray that.</p>
+
+</blockquote>
+<p>We make no promise that money will ever be distributed. We bind ourselves publicly to the allocation rule if it ever is.</p>
+<p>That paragraph is the ceiling, not the floor: no page of ours may claim more than it says, and none may say it more softly. The operative text behind it — eleven clauses, the validation policy, the identity terms — is <a href="https://github.com/socaity/socaity.dev/blob/main/doc/m0-standing-commitment.md">doc/m0-standing-commitment.md</a>.</p>
+<p>The structural consequence worth naming plainly: a fixed pie per epoch means the same contribution is a larger fraction of a smaller network. That is arithmetic about a denominator, not a forecast about money. We will not put a number, a multiple, or a projection on it, and if you meet us and ask what it is worth, you will get this same structural answer.</p>
+<hr>
+<h2 id="the-glass-house">The glass house</h2>
+<p>Claims are cheap. These are the artifacts:</p>
+<ul>
+<li><strong>The record and its rules</strong> — <a href="https://github.com/socaity/socaity.dev/tree/main/ledger"><code>ledger/</code></a>: the append-only log, its closed event catalogue, its validator, and their tests. The page that renders the record, <code>/ledger</code>, publishes with this one; every entry links its evidence and every displayed number is computed from a published artifact rather than typed in.</li>
+<li><strong>Our own roadmap as the first needs graph</strong> — <a href="https://github.com/socaity/socaity.dev/tree/main/graph/nodes"><code>graph/nodes/</code></a> and <a href="https://github.com/socaity/socaity.dev/tree/main/graph/tickets"><code>graph/tickets/</code></a>, checked on every change by <a href="https://github.com/socaity/socaity.dev/blob/main/.github/workflows/graph-check.yml"><code>.github/workflows/graph-check.yml</code></a>. This project's construction is the first commons problem it has to solve, so it is modelled in the platform's own conventions.</li>
+<li><strong>How decisions were actually made</strong> — <a href="https://github.com/socaity/socaity.dev/tree/main/council"><code>council/</code></a>. Every design question was argued by role-specialists in the open and adopted by consent; the raw deliberations are checked in, including the rounds where a proposal was overruled or withdrawn.</li>
+<li><strong>The words we forbid ourselves</strong> — <a href="https://github.com/socaity/socaity.dev/blob/main/doc/standards/vocabulary-and-visual.md"><code>doc/standards/vocabulary-and-visual.md</code></a> and the machine-checked <a href="https://github.com/socaity/socaity.dev/blob/main/doc/standards/banned-words.txt"><code>banned-words.txt</code></a> that gates every public page in CI, this one included.</li>
+<li><strong>The road, in order</strong> — <a href="https://github.com/socaity/socaity.dev/blob/main/doc/milestones.md">doc/milestones.md</a>; how the builders eat while walking it — <a href="https://github.com/socaity/socaity.dev/blob/main/doc/sustainability.md">doc/sustainability.md</a>.</li>
+</ul>
+<hr>
+<h2 id="what-we-do-not-know">What we do not know</h2>
+<p>The honesty here is not modesty. These are unsolved, and anyone who tells you otherwise is selling something.</p>
+<ul>
+<li><strong>The allocation rule is not written yet.</strong> What exists is the <em>procedure</em>: the validator refuses to open any epoch after the first without a hash-attested, published rule version (<a href="https://github.com/socaity/socaity.dev/blob/main/ledger/validator.py"><code>ledger/validator.py</code></a>). Until that rule ships as versioned executable code, an epoch share is a plan, not a number.</li>
+<li><strong>Proof of personhood.</strong> One human, one voice needs a mechanism that resists Sybil attacks without excluding the people we most need to hear. We do not have one we like.</li>
+<li><strong>When money is allowed near this.</strong> The moment a recorded contribution can be turned into money, every attack becomes profitable. That door stays shut until the verification market has been pointed at us and survived it — deliberately the last milestone, not the first.</li>
+<li><strong>Losing branches.</strong> Exploring an approach that fails still produces information. We cannot yet price it.</li>
+<li><strong>Who tunes the multipliers.</strong> The parameters that decide what the commons is worth are set by people whose own income depends on them. Publishing them and making exit cheap is a real constraint but not a complete answer; it is the sharpest open question in <a href="https://github.com/socaity/socaity.dev/blob/main/doc/sustainability.md">doc/sustainability.md</a>.</li>
+<li><strong>The commitment is unreviewed.</strong> No licensed practitioner has read the instrument yet. Until one has, nothing above it publishes.</li>
+</ul>
+<p>Summary of our actual position: mechanism designed, record running, rule unwritten, network of one.</p>
+<hr>
+<h2 id="who-this-is-for">Who this is for</h2>
+<p>People who have watched something load-bearing rot for want of a maintainer, and who suspect the problem is not laziness but pricing.</p>
+<p>There is no queue to join and no position to hold. Two things are worth doing: read <a href="https://github.com/socaity/socaity.dev/blob/main/doc/vision.md">vision.md</a> and try to break it — the attack table is a challenge, not a boast — and <a href="all/">open a challenge against anything in the record that you think is wrong</a>.</p>
+<p>The milestone we care about is not an audience. It is the first entry on that ledger that was not written by us.</p>
+
+</article>
+<p class="colophon">This page is rendered from <a href="https://github.com/socaity/socaity.dev/blob/main/doc/manifesto.md"><code>doc/manifesto.md</code></a> in the repository. The Markdown file is the only copy; the page you are reading is a build product of it.</p>
+</main>
+<footer>
+<details id="legend" class="legend-marks">
+<summary>what these marks mean</summary>
+<p>Every chip is derived from the files in <code>graph/</code>. Nothing here is hand-maintained.</p>
+<dl class="legend">
+<dt>written by a person</dt><dd>provenance kind: a person wrote this assertion</dd>
+<dt>written by a program</dt><dd>provenance kind: a program wrote this assertion</dd>
+<dt>Open</dt><dd>node status open</dd>
+<dt>Done</dt><dd>node status resolved</dd>
+<dt>Withdrawn</dt><dd>node status withdrawn; the page stays reachable</dd>
+<dt>Merged into →</dt><dd>node status merged; links the surviving node</dd>
+<dt>(no chip)</dt><dd>edge status asserted</dd>
+<dt>Contested</dt><dd>edge status disputed; links the contest</dd>
+<dt>Settled</dt><dd>edge status settled; links the resolving record</dd>
+</dl>
+</details>
+<p class="muted">What a link preview of this page shows: <a href="card/">its card</a>, the same 1200&nbsp;&times;&nbsp;630 object the meta tags above point at.</p>
+<p class="muted">Freshness is measured against the graph clock (<time datetime="2026-08-06">2026-08-06</time>), the newest assertion in the merged tree — not against the time of the build, so every build of the same tree is identical.</p>
+</footer>
+</body>
+</html>

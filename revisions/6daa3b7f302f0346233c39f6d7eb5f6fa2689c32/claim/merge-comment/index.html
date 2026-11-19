@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The merge comment · socaity</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="masthead">
+<div class="masthead__inner">
+<p class="masthead__mark"><a href="../../">socaity.dev</a></p>
+<nav class="masthead__nav" aria-label="Site"><ul class="sitenav">
+<li><a href="../../">Home</a></li>
+<li><a href="../../roadmap/">Roadmap</a></li>
+<li><a href="../../ledger/">Ledger</a></li>
+<li><a href="../../faq/">FAQ</a></li>
+<li><a href="../../all/">All nodes</a></li>
+<li><a href="../../graph.json">graph.json</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="content">
+<aside class="rail"></aside>
+<div class="claim claim--verbatim">
+
+<h1>The merge comment</h1>
+
+<p class="register"><strong>No token. Nothing to trade. This is a
+database.</strong></p>
+
+<p>When a
+contribution is accepted, the maintainer posts one comment. It carries the
+invitation to <a href="../../claim/">claim the entry</a>, and it is checked
+into the repository rather than written fresh each time — the copy is the part
+of this path most likely to go wrong, so it is reviewed once, in public, like
+any other artifact.</p>
+
+<p>The file below is shown exactly as it is stored. It is published here so
+that a contributor who receives that comment can read the instructions the
+maintainer was working from, including the ones about what may never be added
+to it.</p>
+
+<pre># The merge comment
+
+This is the comment a maintainer posts when a contribution is accepted. It is
+checked in, and it is rendered on the site at `/claim/merge-comment/`, because
+the claim invitation is the single highest-stakes piece of copy in the M0
+contribution path (council/socaity-ipg.md, clause 3) and it must not be
+improvised once per pull request.
+
+**It is a template, not a form letter.** The first line is written fresh every
+time and names what actually changed, in the maintainer&#39;s own words. Everything
+after it is fixed copy and should be pasted unedited — every sentence in it is
+load-bearing against something: a deadline that does not exist, a valuation the
+claim does not change, a name nobody may publish without being asked.
+
+## Rules that come with it
+
+1. **Post it at merge, not after the entry is written.** The merge is the
+   moment of belonging and it waits on nothing.
+2. **Never add urgency.** No scarcity phrasing, no counts, no &#34;first N&#34;, no
+   deadline, no timer, nothing that implies the invitation could run out. If
+   the copy below ever starts to feel like it needs a nudge, the answer is a
+   better page, not a nudge.
+3. **Ask before naming them anywhere else.** The record names a key. Naming a
+   person in a post, a digest or a release note needs that person&#39;s yes, asked
+   for in plain words, with &#34;no&#34; as a complete answer.
+4. **If the claim never comes, that is fine and it is not a failure.** One
+   friendly follow-up after a week or so, and then nothing. The contribution
+   stands, the entry stands, the invitation stays open.
+5. **Fill both placeholders.** `&lt;WHAT CHANGED&gt;` and `&lt;PERMALINK&gt;`. A merge
+   comment posted with a placeholder still in it is worse than no comment.
+
+## The template
+
+```
+Merged — thank you. &lt;WHAT CHANGED, IN PLAIN WORDS, ONE OR TWO SENTENCES: what
+this fixes or adds, and what it means for someone using the project.&gt;
+
+An entry for it is already on the record, dated to the week the work happened
+and valued by the published rule. It does not name anyone yet: it reads
+&#34;attribution reserved&#34;, and it is bound to the author of this pull request —
+you.
+
+&lt;PERMALINK TO THE ENTRY&gt;
+
+Attaching it to a key only you hold takes three commands and a minute or two:
+https://socaity.dev/claim/
+
+Your entry never expires. There is no deadline and nothing to be early for;
+after about six months, claiming it takes one extra verification step, and
+that is the only thing that ever changes.
+
+If you would rather not, that is a complete answer. The change is merged, it
+stays merged, and the git history says it was yours either way. And if I ever
+want to mention this work anywhere beyond the record itself, I will ask you
+first.
+```
+
+## What the maintainer does next
+
+Write the acceptance entry with the contributor field empty and the binding set
+to the SHA-256 of `github:&lt;the pull request author&#39;s login&gt;`, **with the login
+folded to lower case** — a GitHub login is case-insensitive, the contributor
+types their own at step 2 in whatever case they please, and a binding computed
+from a different case is a binding that will never match:
+
+```
+printf &#39;github:%s&#39; &lt;THEIR-LOGIN&gt; | tr &#39;A-Z&#39; &#39;a-z&#39; | shasum -a 256
+```
+
+That binding is what makes the invitation true, and it can only be fixed now,
+before anyone knows whether the claim will come.
+
+When the contributor posts their attestation, verify it before recording
+anything — save the comment to a file, or paste it on stdin:
+
+```
+python3 tools/claim/verify_claim.py --login &lt;THEIR-LOGIN&gt; pasted-comment.txt
+```
+
+Check by eye the one thing the script cannot: that the comment really was
+posted by that account. Then reply with the permalink, in a sentence, with no
+ceremony attached to it beyond thanks.
+</pre>
+
+<p class="provenance">Rendered verbatim from
+<a href="https://github.com/socaity/socaity.dev/blob/main/doc/templates/merge-comment.md"><code>doc/templates/merge-comment.md</code></a>
+in the repository. Changing the words is a change to that file, in its own pull
+request, under the same wordlist gate as every other published surface.</p>
+
+</div>
+</main>
+<footer>
+<details id="legend" class="legend-marks">
+<summary>what these marks mean</summary>
+<p>Every chip is derived from the files in <code>graph/</code>. Nothing here is hand-maintained.</p>
+<dl class="legend">
+<dt>written by a person</dt><dd>provenance kind: a person wrote this assertion</dd>
+<dt>written by a program</dt><dd>provenance kind: a program wrote this assertion</dd>
+<dt>Open</dt><dd>node status open</dd>
+<dt>Done</dt><dd>node status resolved</dd>
+<dt>Withdrawn</dt><dd>node status withdrawn; the page stays reachable</dd>
+<dt>Merged into →</dt><dd>node status merged; links the surviving node</dd>
+<dt>(no chip)</dt><dd>edge status asserted</dd>
+<dt>Contested</dt><dd>edge status disputed; links the contest</dd>
+<dt>Settled</dt><dd>edge status settled; links the resolving record</dd>
+</dl>
+</details>
+<p class="muted">Freshness is measured against the graph clock (<time datetime="2026-08-06">2026-08-06</time>), the newest assertion in the merged tree — not against the time of the build, so every build of the same tree is identical.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claim your entry · socaity</title>
+<link rel="stylesheet" href="../style.css">
+<meta name="description" content="Your merged change is already on the record, priced at the published rate. Three commands attach it to a key only you hold.">
+<meta property="og:type" content="">
+<meta property="og:site_name" content="socaity.dev">
+<meta property="og:title" content="Your entry is already written.">
+<meta property="og:description" content="Your merged change is already on the record, priced at the published rate. Three commands attach it to a key only you hold.">
+<meta property="og:url" content="https://socaity.dev/claim/">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="masthead">
+<div class="masthead__inner">
+<p class="masthead__mark"><a href="../">socaity.dev</a></p>
+<nav class="masthead__nav" aria-label="Site"><ul class="sitenav">
+<li><a href="../">Home</a></li>
+<li><a href="../roadmap/">Roadmap</a></li>
+<li><a href="../ledger/">Ledger</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../all/">All nodes</a></li>
+<li><a href="../graph.json">graph.json</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="content">
+<aside class="rail"></aside>
+<div class="claim">
+
+<h1>Claim your entry</h1>
+
+<p class="register"><strong>No token. Nothing to trade. This is a
+database.</strong></p>
+
+<p class="lede">Your change was merged. An entry for it was written to the
+record the same day, against the week the work actually happened — you did not
+have to be here for that, and none of it was waiting on you.</p>
+
+<p>What the entry does not have yet is a name. It reads
+<strong>attribution reserved</strong>, and it is bound to whoever holds the
+account that authored the merged pull request. That is you. The three commands
+below attach it to a key only you hold —
+<a href="../claim/reserved/">this is what the entry looks like now, and
+after</a>.</p>
+
+<p class="reassure reassure--consent">There is no account here, and there is
+nothing to sign up for: this site stores no password, sends no email, and has
+nothing to log in to. That is why the steps below are ssh commands — the key
+they make on your own machine <em>is</em> the name, and you keep it. Nothing is
+required of you. You may decline all of it and close this page: the entry is
+already written, it is already valued, and it stays bound to you, reading
+<strong>attribution reserved</strong>, until you claim it or never do.</p>
+
+<p class="reassure">Your entry never expires: after about
+6 months, claiming it takes one extra verification step and
+nothing else, and there is nothing here to be early for.
+<a href="#horizon">How that figure is computed.</a> The three commands run in
+well under a second; the rest is reading, pasting, and typing your passphrase —
+twice when you choose it in step 1, once more when you sign in step 2. Under
+three minutes is the target.</p>
+
+<p class="provenance">As of the graph clock <time datetime="2026-08-06">2026-08-06</time> that target has been
+walked end to end by the people who wrote it and not yet timed with
+contributors —
+<a href="https://github.com/socaity/socaity.dev/blob/main/doc/research/m0-claim-flow-test/PROTOCOL.md">the test
+that will time it</a> is written and has not been run.</p>
+
+<ol class="steps">
+<li>
+<h2>1. Make a key</h2>
+<p class="reassure">The command below writes two files. <code>claim-key</code> is the private half: it stays on your machine, and nothing on this site, in this repository, or in the record ever asks you for it. <code>claim-key.pub</code> is the public half — that half becomes your name on the record. ssh-keygen asks for a passphrase; use one, and read the note on backing it up before you close the terminal.</p>
+<pre><code>mkdir -p ~/.socaity &amp;&amp; ssh-keygen -t ed25519 -f ~/.socaity/claim-key -C &#34;socaity claim&#34;
+</code></pre>
+</li>
+<li>
+<h2>2. Sign one line</h2>
+<p class="reassure">The line the first command writes says: this account and this key are the same person. Signing it proves one direction of that — only the private key you made a moment ago can produce that signature, and it can only be used for a socaity claim, never as a login or a commit signature.</p>
+<p class="reassure">Replace <code>YOUR-GITHUB-LOGIN</code> with your account name — the one that authored the merged pull request — then run both lines.</p><pre><code>printf &#39;link:github:%s:%s\n&#39; YOUR-GITHUB-LOGIN \
+  &#34;$(cut -d&#39; &#39; -f1,2 ~/.socaity/claim-key.pub)&#34; &gt; ~/.socaity/claim.txt
+ssh-keygen -Y sign -n socaity.dev/claim -f ~/.socaity/claim-key ~/.socaity/claim.txt
+</code></pre>
+</li>
+<li>
+<h2>3. Publish it</h2>
+<p class="reassure">The command below prints the two files you just made. Paste everything it prints as a comment on your merged pull request. Publishing it there proves the other direction — only your account can post as your account. Neither half is worth anything alone; together they are the whole claim, and nobody else can produce both.</p>
+<pre><code>cat ~/.socaity/claim.txt ~/.socaity/claim.txt.sig
+</code></pre>
+</li>
+</ol>
+
+<h2>That was the whole thing</h2>
+<p>What happens next, in order: someone verifies both directions of your
+signature — with the commands below, which anyone can run; the entry stops
+saying <em>attribution reserved</em> and names your key; you get a reply with a
+permalink to the row.</p>
+<p>None of that changes the valuation. It was computed by the published rule
+when the work was accepted, from the merge itself, and it is the same number
+whether you claim today or next year. Claiming attaches your name. It does not
+price anything, and there is nothing here to buy, sell or transfer.</p>
+
+<h2>Check it yourself</h2>
+<p>An attestation nobody can check is a promise. This one is checkable by you,
+by a maintainer, and by a stranger who trusts neither of us. With ssh-keygen
+alone:</p>
+<pre><code>printf &#39;%s namespaces=&#34;socaity.dev/claim&#34; %s\n&#39; &#34;github:YOUR-GITHUB-LOGIN&#34; \
+  &#34;$(cut -d&#39; &#39; -f1,2 ~/.socaity/claim-key.pub)&#34; &gt; ~/.socaity/allowed_signers
+ssh-keygen -Y verify -f ~/.socaity/allowed_signers -I github:YOUR-GITHUB-LOGIN -n socaity.dev/claim \
+  -s ~/.socaity/claim.txt.sig &lt; ~/.socaity/claim.txt
+</code></pre>
+<p>It prints <code>Good "socaity.dev/claim" signature for github:YOUR-GITHUB-LOGIN</code>,
+or it fails. This repository also carries a small script that runs the same
+check and additionally prints the two values the record stores — your key in
+its ledger form, and the binding hash:</p>
+<pre><code>cat ~/.socaity/claim.txt ~/.socaity/claim.txt.sig \
+  | python3 tools/claim/verify_claim.py --login YOUR-GITHUB-LOGIN
+</code></pre>
+
+<h2 id="more">Before you close the terminal</h2>
+
+<details>
+<summary>The passphrase, and what losing the key would mean</summary>
+<p>Use a passphrase, and put the passphrase somewhere you will still have it in
+a year. The private key file is the only thing that can act as you on the
+record.</p>
+<p>If you lose it: the entries already attached to it stay attached to it. They
+are not deleted and they do not move on their own. Getting your standing onto a
+new key runs through the published adjudication process as a new, signed, public
+entry — forward-only, visible to everyone, never a quiet edit of the past. That
+is deliberately more friction than a password reset, because the alternative is
+an administrator who can silently re-attribute anyone's work.</p>
+<p>The cheap insurance is a backup of the two files in
+<code>~/.socaity/</code> wherever you keep things you cannot regenerate.</p>
+</details>
+
+<details>
+<summary>Your key is permanent. Your display name is not.</summary>
+<p>The record holds your public key, the structured facts of the contribution,
+and hashes of the evidence. It holds no handle, no email address, no display
+name, and no free text — those live in an ordinary, editable, deletable table
+beside it. Change your display name whenever you like; ask for it to be removed
+and it is removed. The entry itself, and the key it names, are permanent by
+design: that permanence is the only reason the record is worth anything.</p>
+</details>
+
+<details>
+<summary>I already have an SSH key — can I use that one?</summary>
+<p>You can, if it is an Ed25519 key: point <code>-f</code> at it in step 2 and
+skip step 1. Think about whether you want to, though. The key you use here
+becomes a permanent public name attached to everything you contribute, and it
+is the same key you push code with. A separate key costs one command and keeps
+the two roles apart.</p>
+</details>
+
+<details>
+<summary>Publishing somewhere other than the pull request</summary>
+<p>The pull request comment is suggested because it is one fewer place to visit
+and the account is already proven there. A public gist under the same account
+works identically — paste the same text, then link the gist in a comment. A
+gist is also the place to publish a later revocation, because you can edit it:
+if you ever need to withdraw the link between an account and a key, publishing a
+signed revocation in that gist is how you say so.</p>
+<p>Either way the artifact is plain text. Nothing here reads the GitHub API;
+the check runs against what you pasted.</p>
+</details>
+
+<details>
+<summary>No GitHub account, or you would rather not use one</summary>
+<p>Then this page is not your path, and you do not need it. The courier path
+takes contributions by email as a signed patch: you sign the content with the
+same <code>ssh-keygen -Y sign</code> command, send the patch, the signature and
+your public key to the published inbox, and a maintainer opens the pull request
+verbatim with your key recorded as the author. Your key precedes the
+contribution, so there is nothing to claim afterwards.</p>
+<p>The path is written down in
+<a href="https://github.com/socaity/socaity.dev/blob/main/council/socaity-z61.md">council/socaity-z61.md</a>,
+which is the record of the decision to have it.</p>
+</details>
+
+<details>
+<summary>Windows, and other shells</summary>
+<p>The commands are POSIX shell. On Windows they run unchanged in Git Bash or
+WSL, both of which ship the same ssh-keygen. In PowerShell, the pipeline in
+step 2 differs; the simplest fix is to write the one line
+<code>link:github:&lt;your-login&gt;:&lt;contents of claim-key.pub, first two
+fields&gt;</code> into a file by hand and sign that file.</p>
+</details>
+
+<details id="horizon">
+<summary>What the record stores, and the 6-month figure</summary>
+<p>Three values reach the record when your claim is recorded, and you can
+recompute all three:</p>
+<ul>
+<li><strong>Your key</strong>, written in the record's canonical form — a
+<code>z6Mk…</code> string. It is a pure function of the same 32 bytes your
+<code>claim-key.pub</code> carries: not a second key, not something to
+generate, just another spelling.</li>
+<li><strong>The binding</strong> — the SHA-256 of the string
+<code>github:YOUR-GITHUB-LOGIN</code>, with the account name in lower case (GitHub
+treats it as case-insensitive, and both sides of this hash have to fold it the
+same way or they will not match). It was fixed when the entry was written,
+before anyone knew whether you would claim it, which is what stops a stranger
+from claiming your entry: their signature would name a different account and
+hash to a different value. The handle itself never reaches the record, only
+this hash:
+<pre><code>printf &#39;github:%s&#39; YOUR-GITHUB-LOGIN | tr &#39;A-Z&#39; &#39;a-z&#39; | shasum -a 256
+</code></pre></li>
+<li><strong>The hash of your attestation</strong>, so the text you published
+cannot be quietly swapped for different text later.</li>
+</ul>
+<p>The 6 months: a claim attaches automatically for
+182 days after the entry — 2 × the published
+91-day accounting period — and after that the same claim is
+still available, but goes through the published adjudication process instead.
+Nothing expires; the automatic path hardens, because an entry that stays
+automatically claimable forever is a prize sitting on someone else's account
+security. Both numbers come from
+<a href="https://github.com/socaity/socaity.dev/blob/main/rule/params.py">the published parameter set</a> and the
+validator's parameters, and this page computes the figure from them rather than
+stating it. Both are marked provisional there and
+can still change while they are.</p>
+</details>
+
+<p class="provenance">Maintainers: the merge comment that carries this
+invitation is
+<a href="../claim/merge-comment/">a checked-in template</a>, not
+something to improvise per pull request.</p>
+
+</div>
+</main>
+<footer>
+<details id="legend" class="legend-marks">
+<summary>what these marks mean</summary>
+<p>Every chip is derived from the files in <code>graph/</code>. Nothing here is hand-maintained.</p>
+<dl class="legend">
+<dt>written by a person</dt><dd>provenance kind: a person wrote this assertion</dd>
+<dt>written by a program</dt><dd>provenance kind: a program wrote this assertion</dd>
+<dt>Open</dt><dd>node status open</dd>
+<dt>Done</dt><dd>node status resolved</dd>
+<dt>Withdrawn</dt><dd>node status withdrawn; the page stays reachable</dd>
+<dt>Merged into →</dt><dd>node status merged; links the surviving node</dd>
+<dt>(no chip)</dt><dd>edge status asserted</dd>
+<dt>Contested</dt><dd>edge status disputed; links the contest</dd>
+<dt>Settled</dt><dd>edge status settled; links the resolving record</dd>
+</dl>
+</details>
+<p class="muted">What a link preview of this page shows: <a href="card/">its card</a>, the same 1200&nbsp;&times;&nbsp;630 object the meta tags above point at.</p>
+<p class="muted">Freshness is measured against the graph clock (<time datetime="2026-08-06">2026-08-06</time>), the newest assertion in the merged tree — not against the time of the build, so every build of the same tree is identical.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledger · socaity</title>
+<link rel="stylesheet" href="../style.css">
+<meta name="description" content="Example chain. Epoch 0 is closed and audited: 100% of it is the founder&#39;s, because there is 1 contributor. Every entry is an individual hour-logged observation with its own evidence digest, priced at the one published rate, and challengeable on its own row. An epoch you contribute to starts at 0% founder — epochs are separate pools.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Epoch 0 — 1 contributor — 100% founder">
+<meta property="og:description" content="Example chain. Epoch 0 is closed and audited: 100% of it is the founder&#39;s, because there is 1 contributor. Every entry is an individual hour-logged observation with its own evidence digest, priced at the one published rate, and challengeable on its own row. An epoch you contribute to starts at 0% founder — epochs are separate pools.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Epoch 0 — 1 contributor — 100% founder">
+<meta name="twitter:description" content="Example chain. Epoch 0 is closed and audited: 100% of it is the founder&#39;s, because there is 1 contributor. Every entry is an individual hour-logged observation with its own evidence digest, priced at the one published rate, and challengeable on its own row. An epoch you contribute to starts at 0% founder — epochs are separate pools.">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="masthead">
+<div class="masthead__inner">
+<p class="masthead__mark"><a href="../">socaity.dev</a></p>
+<nav class="masthead__nav" aria-label="Site"><ul class="sitenav">
+<li><a href="../">Home</a></li>
+<li><a href="../roadmap/">Roadmap</a></li>
+<li><a href="../ledger/" aria-current="page">Ledger</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../all/">All nodes</a></li>
+<li><a href="../graph.json">graph.json</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="content">
+<aside class="rail"></aside>
+
+<h1>Ledger</h1>
+<p class="register">A public record of contributions. No token. Nothing to trade. This is a database.</p>
+
+<p class="ledger-fixture"><strong>This is an example chain, not the real record.</strong> The real record cannot be opened until the rule's parameter values are final, so every figure below is computed by the published rule over <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/chain.jsonl"><code>ledger/example/chain.jsonl</code></a> — real arithmetic, example entries, and no number typed in by hand.</p>
+
+<section aria-labelledby="headline">
+<h2 id="headline">Who contributed what</h2>
+<p class="ledger-headline">Founder share of epoch 0, which is <a href="#epoch-0">closed and audited</a>: <strong>100% (50 of 50 vu)</strong>. There is <a href="#concentration">1 contributor</a>. That contributor is the founder, and this record is <a href="#epoch-0">his own hours, itemised</a> — 5 separate entries, never one lump.</p>
+<p class="ledger-headline">Epoch 1 is open, so it has no final share. <a href="#epoch-1">If epoch 1 closed on this record</a>, the founder share would be <strong>100% (12 of 12 vu)</strong> — an upper bound, and it can only fall, because the numerator is fixed at entry and the denominator only grows.</p>
+<p>Every entry below is an individual observation with its own evidence digest, valued at <a href="#rule">the same flat rate that applies to anyone</a>: one contributor-hour is one valuation unit, in every category, for every contributor. The rate the founder's hours are priced at is that rate, because <a href="#attestation">it is the only rate the schedule has</a>. Nothing here is a currency, a balance or a stake: an epoch share is a fraction of a closed epoch, and amounts exist only if money is ever declared against the record, which it has not been.</p><!-- vocab-ok: the next block names the quoted objection ("pre-mine") in the objector's own words and answers it, per socaity-xuz -->
+
+<details id="premine">
+<!-- vocab-ok: the objection is named in the objector's own words and answered directly below, per socaity-xuz --><summary>Is this a pre-mine?</summary>
+<ol>
+<li><strong>There is nothing to trade.</strong> No unit here is transferable, and no transfer operation exists in <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">the rule code</a> to be called. You cannot buy in, so there is nothing to buy in ahead of.</li>
+<li><strong>Nothing was allocated.</strong> Every entry is hours worked, logged against a rate table published before the entry was recorded, with an evidence digest attached. A grant is handed out; this is a timesheet.<!-- vocab-ok: contrast used to answer the quoted objection --></li>
+<li><strong>The founder's entries are the easiest ones on the record to attack</strong>, not the hardest: the same challenge affordance sits on every row, the rate is attested in public <a href="#attestation">before an epoch opens</a>, and a correction to the founder's own entries has to run through the same public challenge machinery — there is no quiet amendment path, because nothing on the record is edited.</li>
+<li><strong>Epochs are separate pools.</strong> Epoch 0's 100% (50 of 50 vu) cannot touch any epoch you contribute to: an epoch's denominator is the sum of that epoch's own entries and nothing else. <a href="#your-epoch">Run the rule over epoch 2 and the founder share it returns is 0% (0 of 1 vu)</a>.</li>
+<li><strong>What this page cannot prove yet:</strong> that the mechanism works with more than one participant. That is an open problem, and it is the point of <a href="#genesis">the last line on this page</a>.</li>
+</ol>
+</details>
+
+<details id="fixture">
+<summary>What is an example on this page, and what is real</summary>
+<p><strong>Real:</strong> the arithmetic. Every figure is produced at build time by <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">rule/distribute.py</a>, <a href="https://github.com/socaity/socaity.dev/blob/main/rule/valuation.py">rule/valuation.py</a> and <a href="https://github.com/socaity/socaity.dev/blob/main/rule/params.py">rule/params.py</a>. Real too: the chain is replayed and every signature on it re-verified by <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/validator.py">the validator</a> each time this page is built, and the rule version, parameter-set and attestation digests it names are the digests of the files in this repository.</p>
+<p><strong>Example:</strong> the entries. <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/chain.jsonl"><code>ledger/example/chain.jsonl</code></a> holds 28 events, head <code>f74ec7bde10f</code>, signed by an example key whose secret is printed in <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/seed.py"><code>ledger/example/seed.py</code></a>. Its hours are example hours; its evidence digests are digests of the label strings in that script, not of merged work; its audit event is an example audit.</p>
+<p><strong>Why it exists:</strong> the rule refuses to open epoch 1 under a parameter set that still carries placeholders, and those values are not fixed yet. A page that hand-wrote its numbers in the meantime would be the one thing this page is for refusing. There is no external contributor on this chain because there is no external contributor. When the real chain opens, this page renders that one instead and nothing else about the page changes.</p>
+</details>
+</section>
+
+<section aria-labelledby="epoch-0" id="epoch-0">
+<h2>Epoch 0 — closed and audited</h2>
+<p class="muted">Denominator D<sub>0</sub> = 50 vu, the sum of every included entry in this epoch — computed by <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py"><code>rule/distribute.py</code></a>. Epoch weight P<sub>0</sub> = 1. Contributors: 1.</p>
+<div class="ledger-scroll"><table role="table">
+<thead role="rowgroup"><tr role="row"><th role="columnheader" scope="col">Entry</th><th role="columnheader" scope="col">Contributor</th><th role="columnheader" scope="col">What</th><th role="columnheader" scope="col" class="ledger-num">Hours × rate</th><th role="columnheader" scope="col" class="ledger-num">vu</th><th role="columnheader" scope="col" class="ledger-num">Share of epoch 0</th></tr></thead>
+<tbody role="rowgroup">
+<tr class="ledger-entry" id="e-24126144a8bb" role="row">
+<td role="cell" data-label="Entry"><a href="#e-24126144a8bb" title="24126144a8bbb7aaf97b64c14a51de9a815c9018426c7f8b11137bdb2558fcf2"><code>24126144a8bb</code></a></td>
+<td role="cell" data-label="Contributor"><code>z6MkhUif…aNSL</code> <span class="muted">founder</span></td>
+<td role="cell" data-label="What">work logged · governance<br><span class="ledger-derivation">week 2026-W33 · mode E · evidence <code>636a92162ad9</code></span></td>
+<td role="cell" data-label="Hours × rate" class="ledger-num">12 h × 1 vu/h</td>
+<td role="cell" data-label="vu" class="ledger-num">12</td>
+<td role="cell" data-label="Share of epoch 0" class="ledger-num">24%</td>
+</tr>
+<tr class="ledger-meta" role="row"><td role="cell" colspan="6">
+<span class="chip chip-done">confirmed</span><span class="chip chip-weight">challenge window closed at the epoch 0 audit · 0 challenges</span>
+<details><summary>Recompute this entry</summary>
+<pre class="ledger-cmd">python3 tools/render/generators/ledger.py entry 24126144a8bb</pre>
+<p class="ledger-derivation">12 h × 1 vu per hour (from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/params.py">the published rate table</a>) = 12 vu; 12 ÷ 50 vu (D<sub>0</sub>, from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">the rule</a>) = 24%. Full entry id <code>24126144a8bbb7aaf97b64c14a51de9a815c9018426c7f8b11137bdb2558fcf2</code>; evidence digest <code>636a92162ad942262a8a4413d322d1cd989c2c265fb4b1d95f91231e636ed7ba</code>, which resolves to a label string in <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/seed.py">the example chain's seed script</a> and not to merged work.</p>
+</details>
+<p class="act ledger-challenge"><a href="https://github.com/socaity/socaity.dev/issues/new?title=Challenge+ledger+entry+24126144a8bb&amp;body=Entry%3A+24126144a8bbb7aaf97b64c14a51de9a815c9018426c7f8b11137bdb2558fcf2">Challenge this entry</a> <span class="ledger-derivation">· <a href="#e-24126144a8bb">permalink</a></span></p>
+</td></tr>
+<tr class="ledger-entry" id="e-5b7fcfed2f42" role="row">
+<td role="cell" data-label="Entry"><a href="#e-5b7fcfed2f42" title="5b7fcfed2f429dfedf2763a562feb963975a3ee34fb25aaa8336f2f70d5b3949"><code>5b7fcfed2f42</code></a></td>
+<td role="cell" data-label="Contributor"><code>z6MkhUif…aNSL</code> <span class="muted">founder</span></td>
+<td role="cell" data-label="What">work logged · design<br><span class="ledger-derivation">week 2026-W33 · mode E · evidence <code>4de96ed23b82</code></span></td>
+<td role="cell" data-label="Hours × rate" class="ledger-num">8 h × 1 vu/h</td>
+<td role="cell" data-label="vu" class="ledger-num">8</td>
+<td role="cell" data-label="Share of epoch 0" class="ledger-num">16%</td>
+</tr>
+<tr class="ledger-meta" role="row"><td role="cell" colspan="6">
+<span class="chip chip-done">confirmed</span><span class="chip chip-weight">challenge window closed at the epoch 0 audit · 0 challenges</span>
+<details><summary>Recompute this entry</summary>
+<pre class="ledger-cmd">python3 tools/render/generators/ledger.py entry 5b7fcfed2f42</pre>
+<p class="ledger-derivation">8 h × 1 vu per hour (from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/params.py">the published rate table</a>) = 8 vu; 8 ÷ 50 vu (D<sub>0</sub>, from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">the rule</a>) = 16%. Full entry id <code>5b7fcfed2f429dfedf2763a562feb963975a3ee34fb25aaa8336f2f70d5b3949</code>; evidence digest <code>4de96ed23b8263a6f2fe215c85d5bd2fa268bdb3506439ac373a4d48d1bf1220</code>, which resolves to a label string in <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/seed.py">the example chain's seed script</a> and not to merged work.</p>
+</details>
+<p class="act ledger-challenge"><a href="https://github.com/socaity/socaity.dev/issues/new?title=Challenge+ledger+entry+5b7fcfed2f42&amp;body=Entry%3A+5b7fcfed2f429dfedf2763a562feb963975a3ee34fb25aaa8336f2f70d5b3949">Challenge this entry</a> <span class="ledger-derivation">· <a href="#e-5b7fcfed2f42">permalink</a></span></p>
+</td></tr>
+<tr class="ledger-entry" id="e-d9b972ece67f" role="row">
+<td role="cell" data-label="Entry"><a href="#e-d9b972ece67f" title="d9b972ece67ff40aabafbaf9ba7c8debabbc6b40b91367e24fa65c73c63511fa"><code>d9b972ece67f</code></a></td>
+<td role="cell" data-label="Contributor"><code>z6MkhUif…aNSL</code> <span class="muted">founder</span></td>
+<td role="cell" data-label="What">work logged · docs<br><span class="ledger-derivation">week 2026-W33 · mode E · evidence <code>e58a24ed150b</code></span></td>
+<td role="cell" data-label="Hours × rate" class="ledger-num">6 h × 1 vu/h</td>
+<td role="cell" data-label="vu" class="ledger-num">6</td>
+<td role="cell" data-label="Share of epoch 0" class="ledger-num">12%</td>
+</tr>
+<tr class="ledger-meta" role="row"><td role="cell" colspan="6">
+<span class="chip chip-done">confirmed</span><span class="chip chip-weight">challenge window closed at the epoch 0 audit · 0 challenges</span>
+<details><summary>Recompute this entry</summary>
+<pre class="ledger-cmd">python3 tools/render/generators/ledger.py entry d9b972ece67f</pre>
+<p class="ledger-derivation">6 h × 1 vu per hour (from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/params.py">the published rate table</a>) = 6 vu; 6 ÷ 50 vu (D<sub>0</sub>, from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">the rule</a>) = 12%. Full entry id <code>d9b972ece67ff40aabafbaf9ba7c8debabbc6b40b91367e24fa65c73c63511fa</code>; evidence digest <code>e58a24ed150b92a02db3d974ac507ce397fd405f737b7f171abb7d8053c3ba88</code>, which resolves to a label string in <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/seed.py">the example chain's seed script</a> and not to merged work.</p>
+</details>
+<p class="act ledger-challenge"><a href="https://github.com/socaity/socaity.dev/issues/new?title=Challenge+ledger+entry+d9b972ece67f&amp;body=Entry%3A+d9b972ece67ff40aabafbaf9ba7c8debabbc6b40b91367e24fa65c73c63511fa">Challenge this entry</a> <span class="ledger-derivation">· <a href="#e-d9b972ece67f">permalink</a></span></p>
+</td></tr>
+<tr class="ledger-entry" id="e-418dd007020a" role="row">
+<td role="cell" data-label="Entry"><a href="#e-418dd007020a" title="418dd007020a9139962b79a7030b988e80d89b9bb884c37a41d2c61bea00ebca"><code>418dd007020a</code></a></td>
+<td role="cell" data-label="Contributor"><code>z6MkhUif…aNSL</code> <span class="muted">founder</span></td>
+<td role="cell" data-label="What">work logged · code<br><span class="ledger-derivation">week 2026-W33 · mode E · evidence <code>f07b0ca94cb6</code></span></td>
+<td role="cell" data-label="Hours × rate" class="ledger-num">20 h × 1 vu/h</td>
+<td role="cell" data-label="vu" class="ledger-num">20</td>
+<td role="cell" data-label="Share of epoch 0" class="ledger-num">40%</td>
+</tr>
+<tr class="ledger-meta" role="row"><td role="cell" colspan="6">
+<span class="chip chip-done">confirmed</span><span class="chip chip-weight">challenge window closed at the epoch 0 audit · 0 challenges</span>
+<details><summary>Recompute this entry</summary>
+<pre class="ledger-cmd">python3 tools/render/generators/ledger.py entry 418dd007020a</pre>
+<p class="ledger-derivation">20 h × 1 vu per hour (from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/params.py">the published rate table</a>) = 20 vu; 20 ÷ 50 vu (D<sub>0</sub>, from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">the rule</a>) = 40%. Full entry id <code>418dd007020a9139962b79a7030b988e80d89b9bb884c37a41d2c61bea00ebca</code>; evidence digest <code>f07b0ca94cb6280769e1647612d1dec74a1b4c50a5a6396eab254544d8be84e8</code>, which resolves to a label string in <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/seed.py">the example chain's seed script</a> and not to merged work.</p>
+</details>
+<p class="act ledger-challenge"><a href="https://github.com/socaity/socaity.dev/issues/new?title=Challenge+ledger+entry+418dd007020a&amp;body=Entry%3A+418dd007020a9139962b79a7030b988e80d89b9bb884c37a41d2c61bea00ebca">Challenge this entry</a> <span class="ledger-derivation">· <a href="#e-418dd007020a">permalink</a></span></p>
+</td></tr>
+<tr class="ledger-entry" id="e-96e7d1afb951" role="row">
+<td role="cell" data-label="Entry"><a href="#e-96e7d1afb951" title="96e7d1afb951e93462a83a4ca44bd03b32debe79d1e4e040efcd7b52aee10844"><code>96e7d1afb951</code></a></td>
+<td role="cell" data-label="Contributor"><code>z6MkhUif…aNSL</code> <span class="muted">founder</span></td>
+<td role="cell" data-label="What">work logged · review<br><span class="ledger-derivation">week 2026-W33 · mode E · evidence <code>3541b0bf81cc</code></span></td>
+<td role="cell" data-label="Hours × rate" class="ledger-num">4 h × 1 vu/h</td>
+<td role="cell" data-label="vu" class="ledger-num">4</td>
+<td role="cell" data-label="Share of epoch 0" class="ledger-num">8%</td>
+</tr>
+<tr class="ledger-meta" role="row"><td role="cell" colspan="6">
+<span class="chip chip-done">confirmed</span><span class="chip chip-weight">challenge window closed at the epoch 0 audit · 0 challenges</span>
+<details><summary>Recompute this entry</summary>
+<pre class="ledger-cmd">python3 tools/render/generators/ledger.py entry 96e7d1afb951</pre>
+<p class="ledger-derivation">4 h × 1 vu per hour (from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/params.py">the published rate table</a>) = 4 vu; 4 ÷ 50 vu (D<sub>0</sub>, from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">the rule</a>) = 8%. Full entry id <code>96e7d1afb951e93462a83a4ca44bd03b32debe79d1e4e040efcd7b52aee10844</code>; evidence digest <code>3541b0bf81ccad039a3d09e6a4dac0dab7449ada4be9f1772dde03a7233570bf</code>, which resolves to a label string in <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/seed.py">the example chain's seed script</a> and not to merged work.</p>
+</details>
+<p class="act ledger-challenge"><a href="https://github.com/socaity/socaity.dev/issues/new?title=Challenge+ledger+entry+96e7d1afb951&amp;body=Entry%3A+96e7d1afb951e93462a83a4ca44bd03b32debe79d1e4e040efcd7b52aee10844">Challenge this entry</a> <span class="ledger-derivation">· <a href="#e-96e7d1afb951">permalink</a></span></p>
+</td></tr>
+</tbody>
+</table></div>
+</section>
+<section aria-labelledby="epoch-1" id="epoch-1">
+<h2>Epoch 1 — open</h2>
+<p class="muted">Denominator D<sub>1</sub> = 12 vu, the sum of every included entry in this epoch — computed by <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py"><code>rule/distribute.py</code></a>. Epoch weight P<sub>1</sub> = 1. Contributors: 1.</p>
+<div class="ledger-scroll"><table role="table">
+<thead role="rowgroup"><tr role="row"><th role="columnheader" scope="col">Entry</th><th role="columnheader" scope="col">Contributor</th><th role="columnheader" scope="col">What</th><th role="columnheader" scope="col" class="ledger-num">Hours × rate</th><th role="columnheader" scope="col" class="ledger-num">vu</th><th role="columnheader" scope="col">Status</th></tr></thead>
+<tbody role="rowgroup">
+<tr class="ledger-entry" id="e-4eff2345905d" role="row">
+<td role="cell" data-label="Entry"><a href="#e-4eff2345905d" title="4eff2345905d5aabcbb9ed435cfcef924ba01d81774e98ba85aec5c816a4a2fc"><code>4eff2345905d</code></a></td>
+<td role="cell" data-label="Contributor"><code>z6MkhUif…aNSL</code> <span class="muted">founder</span></td>
+<td role="cell" data-label="What">work logged · code<br><span class="ledger-derivation">week 2026-W33 · mode E · evidence <code>cbe0a3d102d0</code></span></td>
+<td role="cell" data-label="Hours × rate" class="ledger-num">9 h × 1 vu/h</td>
+<td role="cell" data-label="vu" class="ledger-num">9</td>
+<td role="cell" data-label="Status"><span class="chip chip-done">confirmed</span></td>
+</tr>
+<tr class="ledger-meta" role="row"><td role="cell" colspan="6">
+<span class="chip chip-weight">challenge window open until epoch 1 closes and its audit completes · 0 challenges</span>
+<span class="ledger-derivation">If epoch 1 closed on this record: 75% of it — an upper bound, it can only fall.</span><details><summary>Recompute this entry</summary>
+<pre class="ledger-cmd">python3 tools/render/generators/ledger.py entry 4eff2345905d</pre>
+<p class="ledger-derivation">9 h × 1 vu per hour (from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/params.py">the published rate table</a>) = 9 vu; 9 ÷ 12 vu (D<sub>1</sub>, from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">the rule</a>) = 75% if the epoch closed here. Full entry id <code>4eff2345905d5aabcbb9ed435cfcef924ba01d81774e98ba85aec5c816a4a2fc</code>; evidence digest <code>cbe0a3d102d071462e49a11fcfd4bd873b8d127735d7c1e1c142fa2b4419df14</code>, which resolves to a label string in <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/seed.py">the example chain's seed script</a> and not to merged work.</p>
+</details>
+<p class="act ledger-challenge"><a href="https://github.com/socaity/socaity.dev/issues/new?title=Challenge+ledger+entry+4eff2345905d&amp;body=Entry%3A+4eff2345905d5aabcbb9ed435cfcef924ba01d81774e98ba85aec5c816a4a2fc">Challenge this entry</a> <span class="ledger-derivation">· <a href="#e-4eff2345905d">permalink</a></span></p>
+</td></tr>
+<tr class="ledger-entry" id="e-e0423f28e363" role="row">
+<td role="cell" data-label="Entry"><a href="#e-e0423f28e363" title="e0423f28e363226c990c73224a1eea411ad1e5fc428eec1b5064182e843e0ecc"><code>e0423f28e363</code></a></td>
+<td role="cell" data-label="Contributor"><code>z6MkhUif…aNSL</code> <span class="muted">founder</span></td>
+<td role="cell" data-label="What">work logged · docs<br><span class="ledger-derivation">week 2026-W33 · mode E · evidence <code>1e2bfe46696e</code></span></td>
+<td role="cell" data-label="Hours × rate" class="ledger-num">3 h × 1 vu/h</td>
+<td role="cell" data-label="vu" class="ledger-num">3</td>
+<td role="cell" data-label="Status"><span class="chip chip-done">confirmed</span></td>
+</tr>
+<tr class="ledger-meta" role="row"><td role="cell" colspan="6">
+<span class="chip chip-weight">challenge window open until epoch 1 closes and its audit completes · 0 challenges</span>
+<span class="ledger-derivation">If epoch 1 closed on this record: 25% of it — an upper bound, it can only fall.</span><details><summary>Recompute this entry</summary>
+<pre class="ledger-cmd">python3 tools/render/generators/ledger.py entry e0423f28e363</pre>
+<p class="ledger-derivation">3 h × 1 vu per hour (from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/params.py">the published rate table</a>) = 3 vu; 3 ÷ 12 vu (D<sub>1</sub>, from <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">the rule</a>) = 25% if the epoch closed here. Full entry id <code>e0423f28e363226c990c73224a1eea411ad1e5fc428eec1b5064182e843e0ecc</code>; evidence digest <code>1e2bfe46696e04d9b2501b817dcade734484967eaa3a6602419e1251d87718e8</code>, which resolves to a label string in <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/seed.py">the example chain's seed script</a> and not to merged work.</p>
+</details>
+<p class="act ledger-challenge"><a href="https://github.com/socaity/socaity.dev/issues/new?title=Challenge+ledger+entry+e0423f28e363&amp;body=Entry%3A+e0423f28e363226c990c73224a1eea411ad1e5fc428eec1b5064182e843e0ecc">Challenge this entry</a> <span class="ledger-derivation">· <a href="#e-e0423f28e363">permalink</a></span></p>
+</td></tr>
+</tbody>
+</table></div>
+<p class="muted">This epoch is open. Its share figures are not final and are never shown beside a closed epoch's: the entries above carry their status, and the "if it closed here" figure sits on its own line under each row.</p>
+</section>
+
+<section class="ledger-block" id="concentration" aria-labelledby="concentration-h">
+<h2 id="concentration-h">Concentration</h2>
+<p class="muted">Figures below are the published rule run over <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/chain.jsonl">the example chain</a>, not the real record, which has not opened.</p>
+<p class="ledger-because">Contributors on this record: <strong>1</strong>.</p>
+<figure class="figure">
+<p class="figure__frac">50 of 50 vu</p>
+<p class="figure__pct">= 100% founder share of epoch 0</p>
+<figcaption class="figure__derivation">because the denominator D<sub>0</sub> = 50 vu is made of 5 entries and all of them are his. <a href="#epoch-0">Every one of them is listed above</a> with its hours, its rate and its evidence digest.</figcaption>
+</figure>
+
+<h3>Tripwire</h3>
+<p><strong>State: escalated.</strong> The tripwire adopted in socaity-19p escalates entries once the founder share of an epoch rises above a published threshold. No threshold value is published in <a href="https://github.com/socaity/socaity.dev/blob/main/rule/params.py">the parameter set</a> yet — and the founder share is 50 of the 50 vu in epoch 0, or 100% of it, which is above any threshold a value could be set to. So the state is escalated by construction, and it stays escalated until the number falls, which requires somebody else's entry.</p>
+
+<h3 id="your-epoch">Your epoch</h3>
+<figure class="figure">
+<p class="figure__frac">0 of 1 vu</p>
+<p class="figure__pct">= 0% founder share of epoch 2</p>
+<figcaption class="figure__derivation">Computed by the published rule over <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/chain.jsonl">the example chain</a>; the real record has not opened. The denominator is one hypothetical hour, priced at the published rate — nothing is recorded in epoch 2.</figcaption>
+</figure>
+<p>Epoch 2 has not opened. Founder hours recorded in it: 0 vu. Epochs are separate pools — an epoch's denominator sums that epoch's entries and no others — so a hypothetical entry run through <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">the published rule</a> in epoch 2 returns a founder share of 0% (0 of 1 vu). Epoch 0's concentration is arithmetically incapable of reaching it. The founder's share of the epoch you contribute to starts at 0% (0 of 1 vu) and rises only if he logs work in that epoch too, on the same rate table, with the same evidence bar.</p>
+<p class="ledger-derivation">Computed the same way as the calculator below: one hypothetical entry, the published rule, nothing recorded. Recompute: <code>python3 tools/render/generators/ledger.py your-epoch</code></p>
+
+<div class="ledger-unwritten" id="unwritten">
+<h3>This entry is unwritten.</h3>
+<p>The first external entry does not exist yet, and the concentration figure above stays where it is until someone else does priced, evidenced work. Same rate table, same evidence bar, same challenge exposure as every founder row above.</p>
+<p class="act act--lede"><a href="../claim/">Claim the first external entry</a></p>
+</div>
+</section>
+
+<section class="ledger-block" id="rule" aria-labelledby="rule-h">
+<h2 id="rule-h">The rule that converts a contribution into a share</h2>
+<p>One screen, whole. The conversion schedule V is a table keyed by category and native unit; a contributor does not declare a rate and cannot propose one.</p>
+<div class="ledger-scroll"><table role="table">
+<thead role="rowgroup"><tr role="row"><th role="columnheader" scope="col">Category</th><th role="columnheader" scope="col">Native unit</th><th role="columnheader" scope="col" class="ledger-num">Rate</th></tr></thead>
+<tbody role="rowgroup">
+<tr role="row"><td role="cell" data-label="Category">code</td><td role="cell" data-label="Native unit">hours</td><td role="cell" data-label="Rate" class="ledger-num">1 vu per hour</td></tr>
+<tr role="row"><td role="cell" data-label="Category">design</td><td role="cell" data-label="Native unit">hours</td><td role="cell" data-label="Rate" class="ledger-num">1 vu per hour</td></tr>
+<tr role="row"><td role="cell" data-label="Category">docs</td><td role="cell" data-label="Native unit">hours</td><td role="cell" data-label="Rate" class="ledger-num">1 vu per hour</td></tr>
+<tr role="row"><td role="cell" data-label="Category">governance</td><td role="cell" data-label="Native unit">hours</td><td role="cell" data-label="Rate" class="ledger-num">1 vu per hour</td></tr>
+<tr role="row"><td role="cell" data-label="Category">ops</td><td role="cell" data-label="Native unit">hours</td><td role="cell" data-label="Rate" class="ledger-num">1 vu per hour</td></tr>
+<tr role="row"><td role="cell" data-label="Category">review</td><td role="cell" data-label="Native unit">hours</td><td role="cell" data-label="Rate" class="ledger-num">1 vu per hour</td></tr>
+</tbody>
+</table></div>
+<p>Then, for an epoch that has closed and been audited: the weight of an entry is its quantity times its rate; the denominator D<sub>e</sub> is the sum of the weights of every included entry of that epoch, counted the same way whichever mode was elected; the epoch share of an entry is its weight over D<sub>e</sub>, as an exact fraction. That is the whole conversion. It is <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">rule/distribute.py</a>, <a href="https://github.com/socaity/socaity.dev/blob/main/rule/valuation.py">rule/valuation.py</a> and <a href="https://github.com/socaity/socaity.dev/blob/main/rule/params.py">rule/params.py</a>, published as code, pinned by hash on the record at <a href="#genesis">the event marked "the rule is published"</a>: rule version <code>308296bd81fc</code>, parameter set <code>5633b6fcaebb</code>, both resolvable in <a href="https://github.com/socaity/socaity.dev/blob/main/rule/RULE_VERSION.json">rule/RULE_VERSION.json</a>.</p>
+<p>An epoch weight is not money and confers no right to any. There is no transfer operation in the code, in either mode, and there is no per-unit price. Whether an amount is ever declared against this record is discretionary and remains so.</p>
+<p class="muted">The parameter values above are the development placeholder set. That is why the real record has not opened: the rule refuses to open epoch 1 under a parameter set that still carries placeholders.</p>
+<h3>Recompute the whole page</h3>
+<pre class="ledger-cmd">git clone https://github.com/socaity/socaity.dev
+cd socaity.dev
+python3 tools/render/generators/ledger.py</pre>
+<p class="ledger-derivation">That command prints every figure on this page. It is <a href="https://github.com/socaity/socaity.dev/blob/main/tools/render/generators/ledger.py">the same file</a> that renders the page, calling the same functions: there is one implementation, not a page and a copy of the page's arithmetic.</p>
+
+<h3 id="attestation">The attestation statement</h3>
+<p>The record carries a signed attestation before an epoch may open. It is reproduced whole; its digest <code>9b38fdeb8762</code> is the <code>statement_hash</code> on the <a href="#genesis">"the attestation statement is signed"</a> event.</p>
+<pre class="ledger-statement">ATTESTATION ACCOMPANYING THE OPENING OF AN EPOCH
+socaity.dev — example artifact (ledger/example/seed.py)
+
+This statement is the artifact behind the statement_hash carried by the
+rule.attested event that precedes epoch.opened(1) in the example chain. It is
+an example instance of the attestation gate adopted in socaity-19p: an epoch
+may not open until the person signing the record has said, in public and in
+their own name, the four things below.
+
+I attest, as the person who signs the events in this record:
+
+1. The conversion schedule V that this epoch opens under was published before
+   any observation it prices was recorded. Its exact bytes are committed, and
+   the hash of the parameter set is on the record ahead of every entry it
+   values.
+
+2. The same table applies to my hours and to everyone else&#39;s. It prices one
+   contributor-hour as one valuation unit, in every category, for every
+   contributor, including me. There is no founder column, no multiplier, and
+   no discretionary adjustment available to me at entry time. My own rate is
+   therefore at or below the referent this schedule is pinned to, because it
+   is the only rate the schedule has.
+
+3. I have no interest that a change to V would advance and no one else&#39;s does
+   not. I am not a beneficiary of the rate I set beyond being one of the
+   people it prices, and I gain nothing from this schedule that a later
+   contributor recording the same hours does not gain identically.
+
+4. When I find an error in my own entries — and I will — I will correct it
+   through the public challenge machinery on the record, not by quietly
+   amending anything. Nothing on this record is edited; corrections are new
+   events with their own signatures.
+
+An epoch weight is not money and confers no right to any. Whether anything is
+ever distributed against this record is discretionary and remains so; this
+statement binds how the record is kept, not what anyone receives.</pre>
+<p class="ledger-derivation">Source: <a href="https://github.com/socaity/socaity.dev/blob/main/ledger/example/attestation.txt">ledger/example/attestation.txt</a>.</p>
+</section>
+
+<section class="ledger-block" id="calculator" aria-labelledby="calc-h">
+<h2 id="calc-h">What would a contribution of mine be worth?</h2>
+<p>Two inputs, because the rule takes two: a category and a number of hours. There is no rate field — the rate is published, not declared. There is no mode field — accepted contributions are recorded in the epoch-share mode as a published constant. There is no epoch field — an entry's epoch is its position on the record, not a choice.</p>
+<div class="ledger-calc">
+<label for="calc-category">Category
+<select id="calc-category">
+<option value="code" selected>code</option>
+<option value="design">design</option>
+<option value="docs">docs</option>
+<option value="governance">governance</option>
+<option value="ops">ops</option>
+<option value="review">review</option>
+</select></label>
+<label for="calc-hours">Hours
+<select id="calc-hours">
+<option value="500000">0.5</option>
+<option value="1000000">1</option>
+<option value="2000000">2</option>
+<option value="4000000">4</option>
+<option value="8000000" selected>8</option>
+<option value="20000000">20</option>
+<option value="40000000">40</option>
+<option value="80000000">80</option>
+</select></label>
+</div>
+<p class="ledger-out" id="calc-out" data-default-key="code|8000000">
+<strong id="calc-vu">8 vu</strong><br>
+<span id="calc-share">If epoch 1 closed on this record: 40% of it</span><br>
+<span class="ledger-derivation" id="calc-derivation">8 h × 1 vu per hour; denominator D<sub>1</sub> would be 20 vu</span>
+</p>
+<p>The vu figure is final at entry: it is fixed by the hours and the published rate, and nothing later changes it. The percentage is an upper bound, quoted only as "if epoch 1 closed on this record" — the numerator is fixed and the denominator only grows, so the only direction it can move is down. That is the honest version of the answer, and it is the reason the next line of this record is worth writing: <a href="../claim/">entry two does not exist yet</a>.</p>
+<p class="ledger-derivation">How this works, exactly: the page is static, so there is no rule engine running in your browser and this page does not contain a second implementation of the rule. All 48 combinations below were computed when the page was built, by calling <a href="https://github.com/socaity/socaity.dev/blob/main/rule/distribute.py">rule/distribute.py</a> and <a href="https://github.com/socaity/socaity.dev/blob/main/rule/valuation.py">rule/valuation.py</a> — once per combination, over the chain, with one hypothetical entry appended and the epoch flipped to closed. The script on the page does a table lookup and no arithmetic. Recompute any cell yourself: <code>python3 tools/render/generators/ledger.py hypothetical code 8</code></p>
+<details>
+<summary>Every precomputed combination (48)</summary>
+<div class="ledger-scroll"><table role="table">
+<thead role="rowgroup"><tr role="row"><th role="columnheader" scope="col">Category</th><th role="columnheader" scope="col" class="ledger-num">Hours</th><th role="columnheader" scope="col" class="ledger-num">Rate</th><th role="columnheader" scope="col" class="ledger-num">vu</th><th role="columnheader" scope="col" class="ledger-num">D<sub>1</sub> would be</th><th role="columnheader" scope="col" class="ledger-num">If epoch 1 closed on this record</th></tr></thead>
+<tbody role="rowgroup">
+<tr role="row"><td role="cell" data-label="Category">code</td><td role="cell" data-label="Hours" class="ledger-num">0.5</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">0.5</td><td role="cell" data-label="D1 would be" class="ledger-num">12.5 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">4%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">code</td><td role="cell" data-label="Hours" class="ledger-num">1</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">1</td><td role="cell" data-label="D1 would be" class="ledger-num">13 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">7.69%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">code</td><td role="cell" data-label="Hours" class="ledger-num">2</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">2</td><td role="cell" data-label="D1 would be" class="ledger-num">14 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">14.29%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">code</td><td role="cell" data-label="Hours" class="ledger-num">4</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">4</td><td role="cell" data-label="D1 would be" class="ledger-num">16 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">25%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">code</td><td role="cell" data-label="Hours" class="ledger-num">8</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">8</td><td role="cell" data-label="D1 would be" class="ledger-num">20 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">40%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">code</td><td role="cell" data-label="Hours" class="ledger-num">20</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">20</td><td role="cell" data-label="D1 would be" class="ledger-num">32 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">62.5%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">code</td><td role="cell" data-label="Hours" class="ledger-num">40</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">40</td><td role="cell" data-label="D1 would be" class="ledger-num">52 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">76.92%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">code</td><td role="cell" data-label="Hours" class="ledger-num">80</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">80</td><td role="cell" data-label="D1 would be" class="ledger-num">92 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">86.96%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">design</td><td role="cell" data-label="Hours" class="ledger-num">0.5</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">0.5</td><td role="cell" data-label="D1 would be" class="ledger-num">12.5 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">4%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">design</td><td role="cell" data-label="Hours" class="ledger-num">1</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">1</td><td role="cell" data-label="D1 would be" class="ledger-num">13 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">7.69%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">design</td><td role="cell" data-label="Hours" class="ledger-num">2</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">2</td><td role="cell" data-label="D1 would be" class="ledger-num">14 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">14.29%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">design</td><td role="cell" data-label="Hours" class="ledger-num">4</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">4</td><td role="cell" data-label="D1 would be" class="ledger-num">16 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">25%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">design</td><td role="cell" data-label="Hours" class="ledger-num">8</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">8</td><td role="cell" data-label="D1 would be" class="ledger-num">20 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">40%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">design</td><td role="cell" data-label="Hours" class="ledger-num">20</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">20</td><td role="cell" data-label="D1 would be" class="ledger-num">32 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">62.5%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">design</td><td role="cell" data-label="Hours" class="ledger-num">40</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">40</td><td role="cell" data-label="D1 would be" class="ledger-num">52 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">76.92%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">design</td><td role="cell" data-label="Hours" class="ledger-num">80</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">80</td><td role="cell" data-label="D1 would be" class="ledger-num">92 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">86.96%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">docs</td><td role="cell" data-label="Hours" class="ledger-num">0.5</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">0.5</td><td role="cell" data-label="D1 would be" class="ledger-num">12.5 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">4%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">docs</td><td role="cell" data-label="Hours" class="ledger-num">1</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">1</td><td role="cell" data-label="D1 would be" class="ledger-num">13 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">7.69%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">docs</td><td role="cell" data-label="Hours" class="ledger-num">2</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">2</td><td role="cell" data-label="D1 would be" class="ledger-num">14 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">14.29%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">docs</td><td role="cell" data-label="Hours" class="ledger-num">4</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">4</td><td role="cell" data-label="D1 would be" class="ledger-num">16 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">25%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">docs</td><td role="cell" data-label="Hours" class="ledger-num">8</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">8</td><td role="cell" data-label="D1 would be" class="ledger-num">20 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">40%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">docs</td><td role="cell" data-label="Hours" class="ledger-num">20</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">20</td><td role="cell" data-label="D1 would be" class="ledger-num">32 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">62.5%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">docs</td><td role="cell" data-label="Hours" class="ledger-num">40</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">40</td><td role="cell" data-label="D1 would be" class="ledger-num">52 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">76.92%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">docs</td><td role="cell" data-label="Hours" class="ledger-num">80</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">80</td><td role="cell" data-label="D1 would be" class="ledger-num">92 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">86.96%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">governance</td><td role="cell" data-label="Hours" class="ledger-num">0.5</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">0.5</td><td role="cell" data-label="D1 would be" class="ledger-num">12.5 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">4%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">governance</td><td role="cell" data-label="Hours" class="ledger-num">1</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">1</td><td role="cell" data-label="D1 would be" class="ledger-num">13 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">7.69%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">governance</td><td role="cell" data-label="Hours" class="ledger-num">2</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">2</td><td role="cell" data-label="D1 would be" class="ledger-num">14 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">14.29%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">governance</td><td role="cell" data-label="Hours" class="ledger-num">4</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">4</td><td role="cell" data-label="D1 would be" class="ledger-num">16 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">25%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">governance</td><td role="cell" data-label="Hours" class="ledger-num">8</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">8</td><td role="cell" data-label="D1 would be" class="ledger-num">20 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">40%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">governance</td><td role="cell" data-label="Hours" class="ledger-num">20</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">20</td><td role="cell" data-label="D1 would be" class="ledger-num">32 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">62.5%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">governance</td><td role="cell" data-label="Hours" class="ledger-num">40</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">40</td><td role="cell" data-label="D1 would be" class="ledger-num">52 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">76.92%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">governance</td><td role="cell" data-label="Hours" class="ledger-num">80</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">80</td><td role="cell" data-label="D1 would be" class="ledger-num">92 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">86.96%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">ops</td><td role="cell" data-label="Hours" class="ledger-num">0.5</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">0.5</td><td role="cell" data-label="D1 would be" class="ledger-num">12.5 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">4%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">ops</td><td role="cell" data-label="Hours" class="ledger-num">1</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">1</td><td role="cell" data-label="D1 would be" class="ledger-num">13 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">7.69%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">ops</td><td role="cell" data-label="Hours" class="ledger-num">2</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">2</td><td role="cell" data-label="D1 would be" class="ledger-num">14 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">14.29%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">ops</td><td role="cell" data-label="Hours" class="ledger-num">4</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">4</td><td role="cell" data-label="D1 would be" class="ledger-num">16 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">25%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">ops</td><td role="cell" data-label="Hours" class="ledger-num">8</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">8</td><td role="cell" data-label="D1 would be" class="ledger-num">20 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">40%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">ops</td><td role="cell" data-label="Hours" class="ledger-num">20</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">20</td><td role="cell" data-label="D1 would be" class="ledger-num">32 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">62.5%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">ops</td><td role="cell" data-label="Hours" class="ledger-num">40</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">40</td><td role="cell" data-label="D1 would be" class="ledger-num">52 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">76.92%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">ops</td><td role="cell" data-label="Hours" class="ledger-num">80</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">80</td><td role="cell" data-label="D1 would be" class="ledger-num">92 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">86.96%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">review</td><td role="cell" data-label="Hours" class="ledger-num">0.5</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">0.5</td><td role="cell" data-label="D1 would be" class="ledger-num">12.5 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">4%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">review</td><td role="cell" data-label="Hours" class="ledger-num">1</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">1</td><td role="cell" data-label="D1 would be" class="ledger-num">13 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">7.69%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">review</td><td role="cell" data-label="Hours" class="ledger-num">2</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">2</td><td role="cell" data-label="D1 would be" class="ledger-num">14 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">14.29%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">review</td><td role="cell" data-label="Hours" class="ledger-num">4</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">4</td><td role="cell" data-label="D1 would be" class="ledger-num">16 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">25%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">review</td><td role="cell" data-label="Hours" class="ledger-num">8</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">8</td><td role="cell" data-label="D1 would be" class="ledger-num">20 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">40%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">review</td><td role="cell" data-label="Hours" class="ledger-num">20</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">20</td><td role="cell" data-label="D1 would be" class="ledger-num">32 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">62.5%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">review</td><td role="cell" data-label="Hours" class="ledger-num">40</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">40</td><td role="cell" data-label="D1 would be" class="ledger-num">52 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">76.92%</td></tr>
+<tr role="row"><td role="cell" data-label="Category">review</td><td role="cell" data-label="Hours" class="ledger-num">80</td><td role="cell" data-label="Rate" class="ledger-num">1 vu/h</td><td role="cell" data-label="vu" class="ledger-num">80</td><td role="cell" data-label="D1 would be" class="ledger-num">92 vu</td><td role="cell" data-label="If epoch 1 closed on this record" class="ledger-num">86.96%</td></tr>
+</tbody>
+</table></div>
+</details>
+<script id="calc-grid" type="application/json">{"code|1000000":{"denominator":"13","rate":"1","share":"7.69%","vu":"1"},"code|2000000":{"denominator":"14","rate":"1","share":"14.29%","vu":"2"},"code|20000000":{"denominator":"32","rate":"1","share":"62.5%","vu":"20"},"code|4000000":{"denominator":"16","rate":"1","share":"25%","vu":"4"},"code|40000000":{"denominator":"52","rate":"1","share":"76.92%","vu":"40"},"code|500000":{"denominator":"12.5","rate":"1","share":"4%","vu":"0.5"},"code|8000000":{"denominator":"20","rate":"1","share":"40%","vu":"8"},"code|80000000":{"denominator":"92","rate":"1","share":"86.96%","vu":"80"},"design|1000000":{"denominator":"13","rate":"1","share":"7.69%","vu":"1"},"design|2000000":{"denominator":"14","rate":"1","share":"14.29%","vu":"2"},"design|20000000":{"denominator":"32","rate":"1","share":"62.5%","vu":"20"},"design|4000000":{"denominator":"16","rate":"1","share":"25%","vu":"4"},"design|40000000":{"denominator":"52","rate":"1","share":"76.92%","vu":"40"},"design|500000":{"denominator":"12.5","rate":"1","share":"4%","vu":"0.5"},"design|8000000":{"denominator":"20","rate":"1","share":"40%","vu":"8"},"design|80000000":{"denominator":"92","rate":"1","share":"86.96%","vu":"80"},"docs|1000000":{"denominator":"13","rate":"1","share":"7.69%","vu":"1"},"docs|2000000":{"denominator":"14","rate":"1","share":"14.29%","vu":"2"},"docs|20000000":{"denominator":"32","rate":"1","share":"62.5%","vu":"20"},"docs|4000000":{"denominator":"16","rate":"1","share":"25%","vu":"4"},"docs|40000000":{"denominator":"52","rate":"1","share":"76.92%","vu":"40"},"docs|500000":{"denominator":"12.5","rate":"1","share":"4%","vu":"0.5"},"docs|8000000":{"denominator":"20","rate":"1","share":"40%","vu":"8"},"docs|80000000":{"denominator":"92","rate":"1","share":"86.96%","vu":"80"},"governance|1000000":{"denominator":"13","rate":"1","share":"7.69%","vu":"1"},"governance|2000000":{"denominator":"14","rate":"1","share":"14.29%","vu":"2"},"governance|20000000":{"denominator":"32","rate":"1","share":"62.5%","vu":"20"},"governance|4000000":{"denominator":"16","rate":"1","share":"25%","vu":"4"},"governance|40000000":{"denominator":"52","rate":"1","share":"76.92%","vu":"40"},"governance|500000":{"denominator":"12.5","rate":"1","share":"4%","vu":"0.5"},"governance|8000000":{"denominator":"20","rate":"1","share":"40%","vu":"8"},"governance|80000000":{"denominator":"92","rate":"1","share":"86.96%","vu":"80"},"ops|1000000":{"denominator":"13","rate":"1","share":"7.69%","vu":"1"},"ops|2000000":{"denominator":"14","rate":"1","share":"14.29%","vu":"2"},"ops|20000000":{"denominator":"32","rate":"1","share":"62.5%","vu":"20"},"ops|4000000":{"denominator":"16","rate":"1","share":"25%","vu":"4"},"ops|40000000":{"denominator":"52","rate":"1","share":"76.92%","vu":"40"},"ops|500000":{"denominator":"12.5","rate":"1","share":"4%","vu":"0.5"},"ops|8000000":{"denominator":"20","rate":"1","share":"40%","vu":"8"},"ops|80000000":{"denominator":"92","rate":"1","share":"86.96%","vu":"80"},"review|1000000":{"denominator":"13","rate":"1","share":"7.69%","vu":"1"},"review|2000000":{"denominator":"14","rate":"1","share":"14.29%","vu":"2"},"review|20000000":{"denominator":"32","rate":"1","share":"62.5%","vu":"20"},"review|4000000":{"denominator":"16","rate":"1","share":"25%","vu":"4"},"review|40000000":{"denominator":"52","rate":"1","share":"76.92%","vu":"40"},"review|500000":{"denominator":"12.5","rate":"1","share":"4%","vu":"0.5"},"review|8000000":{"denominator":"20","rate":"1","share":"40%","vu":"8"},"review|80000000":{"denominator":"92","rate":"1","share":"86.96%","vu":"80"}}</script>
+<script>
+(function () {
+  var grid = JSON.parse(document.getElementById("calc-grid").textContent);
+  var category = document.getElementById("calc-category");
+  var hours = document.getElementById("calc-hours");
+  var epoch = "1";
+  function show() {
+    var cell = grid[category.value + "|" + hours.value];
+    if (!cell) { return; }
+    document.getElementById("calc-vu").textContent = cell.vu + " vu";
+    document.getElementById("calc-share").textContent =
+      "If epoch " + epoch + " closed on this record: " + cell.share + " of it";
+    document.getElementById("calc-derivation").textContent =
+      hours.options[hours.selectedIndex].text + " h × " + cell.rate +
+      " vu per hour; denominator D" + epoch + " would be " + cell.denominator + " vu";
+  }
+  category.addEventListener("change", show);
+  hours.addEventListener("change", show);
+  show();
+})();
+</script>
+</section>
+
+<section id="genesis" aria-labelledby="genesis-h">
+<h2 id="genesis-h">How the record was opened</h2>
+<p>The validator refuses an external entry before this sequence is complete, in this order. That is not a courtesy; it is the reason the founder went first — the rule and the rate table had to be published, and the founder's own position itemised and closed, before anybody else's entry could be admitted at all.</p>
+<ol class="ledger-timeline">
+<li>the record begins <code class="ledger-derivation">76677d5ee397</code></li>
+<li>the rule is published, as code, by its hash <span class="muted">— rule version 308296bd81fc</span> <code class="ledger-derivation">1f48599b26b5</code></li>
+<li>the amendment rule is published <code class="ledger-derivation">76ef3836596b</code></li>
+<li>the conversion schedule V is published <span class="muted">— V 5633b6fcaebb</span> <code class="ledger-derivation">db486c73859a</code></li>
+<li>epoch opened <span class="muted">— epoch 0</span> <code class="ledger-derivation">189cc6e1350b</code></li>
+<li>epoch closed <span class="muted">— epoch 0</span> <code class="ledger-derivation">7450262e72cf</code></li>
+<li>the attestation statement is signed <span class="muted">— statement 9b38fdeb8762</span> <code class="ledger-derivation">30f4f33e7c9a</code></li>
+<li>epoch opened <span class="muted">— epoch 1</span> <code class="ledger-derivation">e8e731067e04</code></li>
+</ol>
+<p class="ledger-derivation">The next event on this record is <a href="#unwritten">the first entry that is not the founder's</a>.</p>
+</section>
+</main>
+<footer>
+<details id="legend" class="legend-marks">
+<summary>what these marks mean</summary>
+<p>Every chip is derived from the example ledger event log. Nothing here is hand-maintained.</p>
+<dl class="legend">
+<dt>written by a person</dt><dd>provenance kind: a person wrote this assertion</dd>
+<dt>written by a program</dt><dd>provenance kind: a program wrote this assertion</dd>
+<dt>Open</dt><dd>node status open</dd>
+<dt>Done</dt><dd>node status resolved</dd>
+<dt>Withdrawn</dt><dd>node status withdrawn; the page stays reachable</dd>
+<dt>Merged into →</dt><dd>node status merged; links the surviving node</dd>
+<dt>(no chip)</dt><dd>edge status asserted</dd>
+<dt>Contested</dt><dd>edge status disputed; links the contest</dd>
+<dt>Settled</dt><dd>edge status settled; links the resolving record</dd>
+</dl>
+</details>
+<p class="muted">What a link preview of this page shows: <a href="card/">its card</a>, the same 1200&nbsp;&times;&nbsp;630 object the meta tags above point at.</p>
+<p class="muted">Freshness is measured against the graph clock (<time datetime="2026-08-06">2026-08-06</time>), the newest assertion in the merged tree — not against the time of the build, so every build of the same tree is identical.</p>
+</footer>
+</body>
+</html>
