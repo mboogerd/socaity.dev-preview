@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outsiders cannot see what the project needs next · socaity</title>
+<link rel="stylesheet" href="../style.css">
+<meta name="description" content="Every open problem in the needs graph, with what it requires and what it competes with.">
+<meta property="og:type" content="">
+<meta property="og:site_name" content="socaity.dev">
+<meta property="og:title" content="Our own roadmap, in the platform’s own conventions.">
+<meta property="og:description" content="Every open problem in the needs graph, with what it requires and what it competes with.">
+<meta property="og:url" content="https://socaity.dev/roadmap/">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="masthead">
+<div class="masthead__inner">
+<p class="masthead__mark"><a href="../">socaity.dev</a></p>
+<nav class="masthead__nav" aria-label="Site"><ul class="sitenav">
+<li><a href="../">Home</a></li>
+<li><a href="../roadmap/">Roadmap</a></li>
+<li><a href="../ledger/">Ledger</a></li>
+<li><a href="../faq/">FAQ</a></li>
+<li><a href="../all/">All nodes</a></li>
+<li><a href="../graph.json">graph.json</a></li>
+</ul></nav>
+</div>
+</header>
+<main id="content">
+<aside class="rail"></aside>
+
+<h1>Outsiders cannot see what the project needs next</h1>
+<p class="chips">
+ <span class="chip chip-open">Open</span> <span class="muted">problem</span>
+<span class="chip chip-contested">1 contested edge(s)</span>
+<a href="https://github.com/socaity/socaity.dev/pull/12">read the contest</a>  <span class="chip chip-ticket">ticket open</span> </p>
+<aside class="rail">
+<div class="prov">
+<details class="prov__disclosure">
+<summary><span class="prov__kind">written by a person</span> <span class="prov__who">founder · <time datetime="2026-08-01">2026-08-01</time></span></summary>
+<dl class="prov__grid">
+<dt>asserted by</dt><dd>founder</dd>
+<dt>model</dt><dd>none</dd>
+<dt>run</dt><dd>none</dd>
+<dt>asserted</dt><dd><time datetime="2026-08-01">2026-08-01</time></dd>
+<dt>evidence</dt><dd><code>sha256:0c3f3e4d5a6b…</code></dd>
+</dl>
+<p class="prov__derivation"><a href="../graph.json">derivation</a></p>
+</details>
+</div>
+</aside>
+
+<article>
+
+<section aria-label="Statement"><p>Someone who arrives from the manifesto has no way to find out what work is
+open, what it depends on, and where they could disagree. The roadmap lives in
+founder notes and council transcripts, so the only way in is to ask.</p></section>
+
+<p class="act"><a href="../claim/">Nobody has claimed this ticket — this is how you take it</a></p>
+
+<section class="contest" aria-labelledby="contest"><h2 id="contest">Disagree with this?</h2>
+<p>Contesting a claim is the ordinary way to use this record, not an escalation. A contest is an event on the graph: it renders here, beside the claim, from the next build onward.</p>
+<p class="act act--lede"><a href="https://github.com/socaity/socaity.dev/issues/new?title=Contest+outsiders-cannot-see-what-is-needed&amp;body=Node%3A+n-jajustitpylddo5dahk2zk3opm">Contest this claim</a></p>
+<p class="act"><a href="https://github.com/socaity/socaity.dev/edit/main/graph/nodes/n-jajustitpylddo5dahk2zk3opm.yaml">Propose a change to the file itself</a> · <a href="#legend">what these marks mean</a></p>
+<p class="muted">Permanent address: <code>n-jajustitpylddo5dahk2zk3opm</code> (the name <code>outsiders-cannot-see-what-is-needed</code> may change).</p>
+</section>
+
+
+<section aria-labelledby="approaches"><h2 id="approaches">2 competing approach(es)</h2>
+<article class="card">
+  <h3><a href="../n/n-7oxaigycyqpnb7mkj35qhg6hqa/">Render a static site from the YAML node files</a></h3>
+  <p class="chips">
+ <span class="chip chip-open">Open</span>  <span class="chip chip-weight">currently favored</span>   </p>
+<p class="provenance">Asserted by decomposer, on behalf of founder · written by a program · estimated <time datetime="2026-08-02">2026-08-02</time></p>  <p>One small Python generator reads graph/nodes/*.yaml and writes a static site:
+one page per node, a roadmap page, an /all index and a graph.json export. The
+site is a pure function of the merged tree, so a fork renders the same pages
+and CI can prove the build is reproducible.</p>
+<p class="muted">Why this edge: A published, forkable site is one way to make the open work visible.</p></article>
+<article class="card">
+  <h3><a href="../n/n-jvepxjwpl56wvp5tlzuv6rjss4/">Keep a hand-maintained roadmap page</a></h3>
+  <p class="chips">
+ <span class="chip chip-open">Open</span>  <span class="chip chip-contested">Contested</span>  <a href="https://github.com/socaity/socaity.dev/pull/12">read the contest</a> <span class="chip chip-weight">open</span>   </p>
+<p class="provenance">Asserted by decomposer, on behalf of founder · written by a program · estimated <time datetime="2026-08-03">2026-08-03</time></p>  <p>Write the roadmap as one markdown page and update it by hand whenever
+something changes. Cheap to start, and it needs no tooling at all.</p>
+<p class="muted">Why this edge: A hand-maintained page is a hand-maintained status by definition.</p></article>
+</section>
+
+<section aria-labelledby="refined"><h2 id="refined">Narrower problems</h2>
+<ul>
+<li><a href="../n/n-np4zpgoq56i343bfuiuuh52mvi/">Graph edits cannot be checked by hand</a> <span class="chip chip-open">Open</span> </li>
+</ul>
+</section>
+
+
+
+</article>
+<section aria-labelledby="now"><h2 id="now">What matters now</h2>
+<p class="muted">Open nodes whose requirements are all met and whose ticket is unclaimed — computed from the ticket files, never curated. When this list is empty it says so; it is never padded.</p>
+<ol class="worklist">
+<li class="work">
+<p class="work__title"><a href="../n/n-jajustitpylddo5dahk2zk3opm/">Outsiders cannot see what the project needs next</a></p>
+<p class="work__meta"><span class="chip chip-open">Open</span> <span class="chip chip-weight">problem</span> <span class="chip chip-weight">tier 1</span> <span class="chip chip-ticket">ticket unclaimed</span> <code class="work__ticket">t-eeeeeeeeeeeeeeeeeeeeeeeeee</code></p>
+<p class="act"><a href="../n/n-jajustitpylddo5dahk2zk3opm/">Read the record</a> · <a href="../claim/">Take this ticket</a> · <a href="https://github.com/socaity/socaity.dev/issues/new?title=Contest+outsiders-cannot-see-what-is-needed&amp;body=Node%3A+n-jajustitpylddo5dahk2zk3opm">Say this is the wrong thing to work on</a></p>
+</li>
+<li class="work">
+<p class="work__title"><a href="../n/n-jvepxjwpl56wvp5tlzuv6rjss4/">Keep a hand-maintained roadmap page</a></p>
+<p class="work__meta"><span class="chip chip-open">Open</span> <span class="chip chip-weight">solution</span> <span class="chip chip-weight">tier 1</span> <span class="chip chip-ticket">ticket unclaimed</span> <code class="work__ticket">t-dddddddddddddddddddddddddd</code></p>
+<p class="act"><a href="../n/n-jvepxjwpl56wvp5tlzuv6rjss4/">Read the record</a> · <a href="../claim/">Take this ticket</a> · <a href="https://github.com/socaity/socaity.dev/issues/new?title=Contest+hand-maintained-roadmap-page&amp;body=Node%3A+n-jvepxjwpl56wvp5tlzuv6rjss4">Say this is the wrong thing to work on</a></p>
+</li>
+<li class="work">
+<p class="work__title"><a href="../n/n-np4zpgoq56i343bfuiuuh52mvi/">Graph edits cannot be checked by hand</a></p>
+<p class="work__meta"><span class="chip chip-open">Open</span> <span class="chip chip-weight">problem</span> <span class="chip chip-weight">tier 1</span> <span class="chip chip-ticket">ticket unclaimed</span> <code class="work__ticket">t-cccccccccccccccccccccccccc</code></p>
+<p class="act"><a href="../n/n-np4zpgoq56i343bfuiuuh52mvi/">Read the record</a> · <a href="../claim/">Take this ticket</a> · <a href="https://github.com/socaity/socaity.dev/issues/new?title=Contest+graph-edits-are-unverifiable-by-hand&amp;body=Node%3A+n-np4zpgoq56i343bfuiuuh52mvi">Say this is the wrong thing to work on</a></p>
+</li>
+</ol>
+</section>
+</main>
+<footer>
+<details id="legend" class="legend-marks">
+<summary>what these marks mean</summary>
+<p>Every chip is derived from the files in <code>graph/</code>. Nothing here is hand-maintained.</p>
+<dl class="legend">
+<dt>written by a person</dt><dd>provenance kind: a person wrote this assertion</dd>
+<dt>written by a program</dt><dd>provenance kind: a program wrote this assertion</dd>
+<dt>Open</dt><dd>node status open</dd>
+<dt>Done</dt><dd>node status resolved</dd>
+<dt>Withdrawn</dt><dd>node status withdrawn; the page stays reachable</dd>
+<dt>Merged into →</dt><dd>node status merged; links the surviving node</dd>
+<dt>(no chip)</dt><dd>edge status asserted</dd>
+<dt>Contested</dt><dd>edge status disputed; links the contest</dd>
+<dt>Settled</dt><dd>edge status settled; links the resolving record</dd>
+</dl>
+</details>
+<p class="muted">What a link preview of this page shows: <a href="card/">its card</a>, the same 1200&nbsp;&times;&nbsp;630 object the meta tags above point at.</p>
+<p class="muted">Freshness is measured against the graph clock (<time datetime="2026-08-06">2026-08-06</time>), the newest assertion in the merged tree — not against the time of the build, so every build of the same tree is identical.</p>
+</footer>
+</body>
+</html>
